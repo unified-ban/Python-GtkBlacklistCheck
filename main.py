@@ -2,14 +2,16 @@ import gi, requests, json
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
-token="YOUR_API_KEY"
+token="YOUR_TOKEN"
 
 class UnifiedbanGUIWindow(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="unified/ban GUI")
         self.set_size_request(350, 200)
-
+        self.set_position(Gtk.WindowPosition.CENTER)
+        
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        vbox.set_border_width(20)
         self.add(vbox)
 
         self.entry = Gtk.Entry()
