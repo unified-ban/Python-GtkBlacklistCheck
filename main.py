@@ -7,15 +7,18 @@ token="YOUR_TOKEN"
 class UnifiedbanGUIWindow(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="unified/ban GUI")
-        self.set_size_request(350, 200)
+        self.set_size_request(400, 250)
         self.set_position(Gtk.WindowPosition.CENTER)
         
+        settings = Gtk.Settings.get_default()
+        settings.set_property("gtk-application-prefer-dark-theme", True)
+
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         vbox.set_border_width(20)
         self.add(vbox)
 
         self.entry = Gtk.Entry()
-        self.entry.set_placeholder_text("Enter User_ID")
+        self.entry.set_placeholder_text("Enter User_ID and press Enter")
         self.entry.connect("activate", self.on_entry_activate)
 
         vbox.add(self.entry)
@@ -27,10 +30,12 @@ class UnifiedbanGUIWindow(Gtk.Window):
         vbox.add(scrolledwindow)
 
         textview = Gtk.TextView()
+        textview.set_border_width(10)
         self.textbuffer = textview.get_buffer()
         self.textbuffer.set_text("Wait for input ..")
 
         scrolledwindow.add(textview)
+        textview.grab_focus()
 
         self.add(vbox)
     
